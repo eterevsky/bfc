@@ -1,9 +1,9 @@
 #include <assert.h>
 #include "gencode.h"
 
-static const char *prologue = "#include <stdio.h>\n#include <string.h>\n\n";
+static const char prologue[] = "#include <stdio.h>\n#include <string.h>\n\n";
 
-static const char *tape = 
+static const char tape[] = 
 "#include <stdlib.h>\n#include <assert.h>\n"
 "\n"
 "char *tape;\n"
@@ -34,9 +34,9 @@ static const char *tape =
 "  end = tape + size;\n"
 "  p = tape;\n\n";
 
-static const char *notape = "int main()\n{\n  char p[%d];\n  memset(p, 0, %d);\n\n";
+static const char notape[] = "int main()\n{\n  char p[%d];\n  memset(p, 0, %d);\n\n";
 
-static const char *epilogue = "\n  return 0;\n}\n";
+static const char epilogue[] = "\n  return 0;\n}\n";
 
 static void
 pos_print(FILE *out, int offset)

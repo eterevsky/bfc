@@ -1,0 +1,49 @@
+1.0
+First version. The simple compilation. Optimizing '><><>>><>>' to "p += ..." or something like that, '++--++---+-' 
+to "*p += ..." or something like that. All other instructions are translated in the most simple way.
+
+1.9
+The code is split into the "big operations" of the following structure:
+
+  - any sequence of +-><,
+  - any sequence of +-><.
+  - any number of ]
+  - any number of [
+
+Such instructions are compilated as a whole. The values of changing cells could be either there previous value + 
+const, or some input value + const. Each output value is either some cell value + const, or input value + const. 
+The sequence of brackets in the end are interpreted as conditional jumps in case of 0 and 1. So, most of such 
+operations have labels.
+
+2.0 
+The code is split into operations of the following structure:
+
+ - one or no [
+ - any sequence of +-<>,.
+ - one or no ]
+ 
+Brackets are interpreted as while-loops, the compiler "remember" the order of inputs and outputs.
+
+2.1
+The structure of operations changed once more. Now it is as following:
+
+ - at most one [
+ - any sequence of +-<>,
+ - any sequence of +-<>.
+ - at most one ]
+
+New operations are just a bit simpler than in previous version, but are much easier to process. The internal 
+representation of the operations changed to more general one: in each operations there are several input values 
+(cells and console inputs) and several output values (cells and console outputs). Now the output values are 
+expressed as arbitrary linear functions of input values.
+
+2.2
+The main form of the operator now is rougly speaking the multiplication of the vector of input variables by some
+integer matrix.
+
+The neighbor operations of such form are merged by something like multiplication of their matrices.
+
+The loops the results of which could be expressed as those linear operations are converted to arithmetic operation.
+
+
+
